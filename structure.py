@@ -1,9 +1,15 @@
 from algo1 import Array, String, strcmp
 from mylinkedlist import LinkedList
 
+
+LATIN_ALPHABER_SIZE = 26
+ALPHABER_SIZE = 94
+SIZE_OF_ARRAY = 677
+SIZE_OF_HASH =  128
 OFFSETa = ord("a")
 OFFSETA = ord("A")
 OFFSETSPACE = ord(" ")
+A = ((5**(1/2))-1)/2
 
 class HashNode:
   word = None 
@@ -28,9 +34,11 @@ def letterNum(char):
 #Otorga un indice para el Array de Hashes
 #Considera los dos primeros caracteres del String
 def StringToIndex(String):
+  
     length = len(String)
     if length == 0:
         return None
+      
     i = letterNum(String[0])
     j = 0
     if length == 1:
@@ -38,36 +46,30 @@ def StringToIndex(String):
     else:
         j = letterNum(String[1])
 
-    if i > -1 and i < 26 and j > -1 and j < 26:
-        return i*26 + j
+    if i > -1 and i < LATIN_ALPHABER_SIZE and j > -1 and j < LATIN_ALPHABER_SIZE:
+        return i * LATIN_ALPHABER_SIZE + j
     else:
-        return 25 * 26 + 26
-
-SIZE_OF_ARRAY = 677
-SIZE_OF_HASH =  128
-
-#Array of Hashes size 677x128
-arrayOfHashes = Array(SIZE_OF_ARRAY,Array(SIZE_OF_HASH,LinkedList()))
+        return SIZE_OF_ARRAY - 1
 
 #Funcion Hash para cada hash del Array de hashes
 #Utiliza el método de multiplicación con A de Knut
-A = ((5**(1/2))-1)/2
-
 def HashFunction(String):
   length = len(String)
-  if length<2:
+  if length < 2:
       return -1
   result = 0
 
   for i in range(length):
-    result = result * 94
+    result = result * ALPHABER_SIZE
     result += ord(String[i]) - OFFSETSPACE
 
     result = result * A
     result = result % 1
   return int(SIZE_OF_HASH * result)
   
-
+#Array of Hashes size 677x128
+arrayOfHashes = Array(SIZE_OF_ARRAY,Array(SIZE_OF_HASH,LinkedList()))
+  
 #Inserta el String en el indice correspondiente del Array de Hash
 def insertArray(arrayOfHashes,word,document):
     index = StringToIndex(word)
@@ -80,7 +82,8 @@ def insertHash(HashWord,word,document):
     index = HashFunction(word)
     hashNode = HashWord[index] #Existencia en slot
     if hashNode == None:
-
+### Lo que está entre ####### podría abstraerse en una o dos funciones
+#############
         #Crea un nuevo contenido
         HashWord[index] = LinkedList()         
         node = HashNode()
@@ -94,6 +97,7 @@ def insertHash(HashWord,word,document):
         node.documents.head = nodeD
 
         HashWord[index].head = node
+#############
     else:
         
         currentNode = hashNode.head   #Caso que exista algo en el slot
@@ -109,14 +113,19 @@ def insertHash(HashWord,word,document):
                         break
                     documentNode = documentNode.nextNode
                 if documentNode == None:
+            ### Lo que está entre ####### podría abstraerse en una o dos funciones
+            #############
                     nodeD = DocumentNode()
                     nodeD.identity = document
                     nodeD.relevance = 1
                     nodeD.nextNode = currentNode.documents.head
                     currentNode.documents.head = nodeD
+            #############
                 break
             currentNode = currentNode.nextNode
         if currentNode == None:                     #Caso de que no exista la palabra en el hasNode
+    ### Lo que está entre ####### podría abstraerse en una o dos funciones
+    #############
             node = HashNode()
             node.word = String(word)
             node.documents = LinkedList()
@@ -128,14 +137,14 @@ def insertHash(HashWord,word,document):
             node.documents.head = nodeD
             node.nextNode = HashWord[index].head
             HashWord[index].head = node
-            
+    #############
     return
 #TODO
 def levantarDedisco(nomArchivo,estruc_path):
     #Levanta desde disco la estructura
     return True
 
-
+##### Codigo de prueba!
 nombres = ["nombre0", "nombre1", "nombre2"]
 test1 = ["aa","una","una","una","palaba","a","ver","si", "entra"]
 test2 = [0,1,1,0,1,0,2,1,1]
