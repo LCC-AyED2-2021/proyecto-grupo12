@@ -4,7 +4,8 @@ from mylinkedlist import LinkedList, length
 def printHelp(name):
   print(f"""USAGE:
   {name} --create <path_name>: creates library structure using directory <path_name>.
-  Files must be *.txt
+    Files must be *.txt
+    Paths must use quotes if they contain spaces
   {name} --search <word>: searches <word> in library
   {name} --help: shows this message""")
 
