@@ -1,4 +1,5 @@
 from algo1 import substr,strcmp,String
+from mylinkedlist import LinkedList, length
 
 def printHelp(name):
   print(f"""USAGE:
