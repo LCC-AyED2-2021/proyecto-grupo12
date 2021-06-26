@@ -14,6 +14,7 @@ A = ((5**(1/2))-1)/2
 class HashNode:
   word = None 
   documents = None
+  sorted  = False
   nextNode = None
 
 class DocumentNode:
