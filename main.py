@@ -75,6 +75,11 @@ elif  argv[1] == "--search":
         if not node.sorted:
           MergeSort(node.documents)
           node.sorted = True
+          library = open("library.sho","wb")
+          if not library.closed:
+            dump(words,library)
+            dump(ArrayDocNames,library)
+            library.close()
       ### OBSERVACIÓN HABRÍA QUE USAR BUCKET SORT
         document = node.documents.head
         while document != None:
