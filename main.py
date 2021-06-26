@@ -26,7 +26,7 @@ elif argv[1] == "--create":
       ArrayDocNames[j] = String(documents[j])
       documentPath = documents[j]
       if isfile(documentPath) and strcmp(substr(documentPath,-3,0),String("txt")):
-        document = open(documentPath,"r")
+        document = open(documentPath,"r",encoding="utf-8")
         text = String(document.read())
         prev = 0
         MAX_LEN = len(text)
