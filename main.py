@@ -5,7 +5,7 @@ from algo1 import String, strcmp, substr, Array
 from mylinkedlist import LinkedList
 from structure import SIZE_OF_ARRAY, SIZE_OF_HASH, insertArray, HashFunction, StringToIndex
 from pickle import dump, load
-from utility import printHelp, cleansubstr
+from utility import printHelp, cleansubstr, MergeSort
 
 
 if len(argv) != 3:
