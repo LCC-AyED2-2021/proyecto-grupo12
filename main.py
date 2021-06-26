@@ -71,7 +71,7 @@ elif  argv[1] == "--search":
       node = candidate
     while node != None:
       if strcmp(node.word,word):
-      ### ACA HAY QUE ORDERNAR LA LISTA
+        MergeSort(node.documents)
       ### OBSERVACIÓN HABRÍA QUE USAR BUCKET SORT
         document = node.documents.head
         while document != None:
