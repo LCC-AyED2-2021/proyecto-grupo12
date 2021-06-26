@@ -53,7 +53,7 @@ def MergeSort(L):
         currentNodeL2=L2.head
 
         while currentNodeL1!=None and currentNodeL2!=None:
-            if currentNodeL1.relevance<currentNodeL2.relevance:
+            if currentNodeL1.relevance>currentNodeL2.relevance:
                 if  L.head==None:
                     L.head=currentNodeL1
                     currentNode=L.head
