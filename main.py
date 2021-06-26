@@ -71,7 +71,10 @@ elif  argv[1] == "--search":
       node = candidate
     while node != None:
       if strcmp(node.word,word):
-        MergeSort(node.documents)
+        
+        if not node.sorted:
+          MergeSort(node.documents)
+          node.sorted = True
       ### OBSERVACIÓN HABRÍA QUE USAR BUCKET SORT
         document = node.documents.head
         while document != None:
