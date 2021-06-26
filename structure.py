@@ -1,7 +1,7 @@
 from algo1 import Array, String, strcmp
 from mylinkedlist import LinkedList
 
-
+#Abtracciones
 LATIN_ALPHABER_SIZE = 26
 ALPHABER_SIZE = 94
 SIZE_OF_ARRAY = 677
@@ -11,12 +11,14 @@ OFFSETA = ord("A")
 OFFSETSPACE = ord(" ")
 A = ((5**(1/2))-1)/2
 
+#Nodo correspondiente a cada palabra
 class HashNode:
   word = None 
   documents = None
   sorted  = False
   nextNode = None
 
+#Nodo correspondiente a cada documento a cada palabra
 class DocumentNode:
   identity = None 
   relevance = 0 
@@ -140,7 +142,4 @@ def insertHash(HashWord,word,document):
             HashWord[index].head = node
     #############
     return
-#TODO
-def levantarDedisco(nomArchivo,estruc_path):
-    #Levanta desde disco la estructura
-    return True
+
