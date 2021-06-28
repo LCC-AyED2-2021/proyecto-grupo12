@@ -7,7 +7,8 @@ from structure import SIZE_OF_ARRAY, SIZE_OF_HASH, insertArray, HashFunction, St
 from pickle import dump, load
 from utility import printHelp, cleansubstr, MergeSort
 
-
+#Operacines --create y --search sobre un directorio
+#Brinda un mensaje de ayuda en caso que la sintaxis sea incorrecta
 if len(argv) != 3:
   printHelp(argv[0])
 elif argv[1] == "--create":
@@ -37,6 +38,7 @@ elif argv[1] == "--create":
             prev = i + 1
             word = cleansubstr(text,start,end, MAX_LEN)
             if len(word) > 0:
+              #Aqui inserta la palabra en la estructura
               insertArray(words, word, j)
         word = cleansubstr(text,prev,i + 1,MAX_LEN)
         if len(word) > 0:
@@ -55,8 +57,6 @@ elif argv[1] == "--create":
 elif  argv[1] == "--search":
   print("Captured word: " + argv[2])
   word = String(argv[2])
-  ### Podría intentar con primera en mayusculas
-  ### y toda la palabra en mayusculas
   index = StringToIndex(word)
   key = HashFunction(word)
   library = open("library.sho","rb")
@@ -71,7 +71,7 @@ elif  argv[1] == "--search":
       node = candidate
     while node != None:
       if strcmp(node.word,word):
-        
+        #Ordena la lista de documentos en su primera búsqueda
         if not node.sorted:
           MergeSort(node.documents)
           node.sorted = True
@@ -80,8 +80,8 @@ elif  argv[1] == "--search":
             dump(words,library)
             dump(ArrayDocNames,library)
             library.close()
-      ### OBSERVACIÓN HABRÍA QUE USAR BUCKET SORT
         document = node.documents.head
+        #Imprime la lista de documentos
         while document != None:
           print(word, document.relevance, ArrayDocNames[document.identity])
           document = document.nextNode
@@ -89,10 +89,6 @@ elif  argv[1] == "--search":
       node = node.nextNode
     if node == None:
       print("no document found")
-
-  ### ACA HAY QUE LEVANTAR EL ARCHIVO
-  ### ACA HAY QUE BUSCAR
-  ### ACA HAY QUE DEVOLVER LA LISTA
 
 else:
   printHelp(argv[0])
