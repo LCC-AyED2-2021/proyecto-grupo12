@@ -18,7 +18,7 @@ class HashNode:
   sorted  = False
   nextNode = None
 
-#Nodo correspondiente a cada documento a cada palabra
+#Nodo correspondiente a cada documento en la linkedlist documents, de cada palabra
 class DocumentNode:
   identity = None 
   relevance = 0 
@@ -26,6 +26,7 @@ class DocumentNode:
 
 
 #Diferencia entre caracteres speciales y comunes
+#Complejidad O(1)
 def letterNum(char): 
     i = ord(char) - OFFSETA #(-) (+) (+) (+)
     j = ord(char) - OFFSETa #(-) (+) (-) (-)
@@ -36,6 +37,7 @@ def letterNum(char):
 
 #Otorga un indice para el Array de Hashes
 #Considera los dos primeros caracteres del String
+#Complejidad O(1)
 def StringToIndex(String):
   
     length = len(String)
@@ -56,6 +58,7 @@ def StringToIndex(String):
 
 #Funcion Hash para cada hash del Array de hashes
 #Utiliza el método de multiplicación con A de Knut
+#Ingresa un string y retorna una posición en el hash
 def HashFunction(String):
   length = len(String)
   if length < 2:
@@ -74,6 +77,7 @@ def HashFunction(String):
 arrayOfHashes = Array(SIZE_OF_ARRAY,Array(SIZE_OF_HASH,LinkedList()))
   
 #Inserta el String en el indice correspondiente del Array de Hash
+#Entrada la estructura, el string y el indice del documento al que corresponde
 def insertArray(arrayOfHashes,word,document):
     index = StringToIndex(word)
     insertHash(arrayOfHashes[index], word,document)
